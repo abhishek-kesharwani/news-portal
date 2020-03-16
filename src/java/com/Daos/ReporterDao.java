@@ -93,6 +93,7 @@ public class ReporterDao {
                   reporter.setPassword(rs.getString("password"));
                   reporter.setPhoto(rs.getString("photo"));
                   reporter.setUserid(rs.getString("userid"));
+                  reporter.setStatus(rs.getString("status"));
                 }
                 smt.close();
                     cp.putConnection(con);
@@ -121,6 +122,7 @@ public class ReporterDao {
                 {
                     Reporter reporter=new Reporter();
                    reporter=new Reporter();
+                   reporter.setId(rs.getInt("id"));
                   reporter.setName(rs.getString("name"));
                   reporter.setEmail(rs.getString("email"));
                   reporter.setAddress(rs.getString("address"));
@@ -130,6 +132,7 @@ public class ReporterDao {
                   reporter.setPassword(rs.getString("password"));
                   reporter.setPhoto(rs.getString("photo"));
                   reporter.setUserid(rs.getString("userid"));
+                  reporter.setStatus(rs.getString("status"));
                   reporters.add(reporter);
                 }
                 smt.close();
@@ -230,7 +233,56 @@ public class ReporterDao {
        
     return status;
    }
-   
+      public boolean  update2(Reporter reporter){
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "update reporter set password=?  where id=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setString(1,Base64.getEncoder().encodeToString(reporter.getPassword().getBytes("UTF-8")));
+           smt.setInt(2, reporter.getId());
+            if(smt.executeUpdate()>0)
+                status=true;
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("DBError :"+e.getMessage());
+        }
+       }
+       
+    return status;
+   }
+    public boolean  update1(Reporter reporter){
+       boolean status=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "update reporter set name=?,dob=?,gender=?,contact=?,email=?,address=?  where id=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setString(1, reporter.getName());
+            smt.setString(2, reporter.getDob());
+            smt.setString(3, reporter.getGender());
+            smt.setString(4, reporter.getContact());
+            smt.setString(5, reporter.getEmail());
+            smt.setString(6, reporter.getAddress());
+            
+           smt.setInt(7, reporter.getId());
+            if(smt.executeUpdate()>0)
+                status=true;
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("DBError :"+e.getMessage());
+        }
+       }
+       
+    return status;
+   }
    public boolean  isUserIdExist(String userid){
        boolean status = false;
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -371,5 +423,38 @@ public class ReporterDao {
        }
        
     return reporters;
+   }
+        public boolean  updateReporterStatus(int reporterid, String status){
+       boolean sts=false;
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            con.setAutoCommit(false);
+            String sql = "update reporter set status=? where id=?";
+            PreparedStatement smt = con.prepareStatement(sql);
+            smt.setString(1, status);
+            
+            smt.setInt(2,reporterid);
+            smt.executeUpdate();
+            con.commit();
+            sts=true;
+            smt.close();
+            //cp.putConnection(con);
+        }   catch(Exception e){
+            try{ con.rollback();
+            System.out.println("DBError :"+e.getMessage());
+            } catch(Exception ex){
+                System.out.println("Rollback error :"+ex.getMessage());
+                
+            }
+        }
+        finally{
+            cp.putConnection(con);
+        }
+       
+       }
+    return sts;
    }
 }

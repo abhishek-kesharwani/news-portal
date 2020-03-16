@@ -25,14 +25,14 @@
 </head>
 
 <body id="page-top">
-<%--<%
+<%
         if(session.getAttribute("admin")==null)
         {
             response.sendRedirect("../newslogin.jsp");
             return;
         }
         %>
---%>
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 

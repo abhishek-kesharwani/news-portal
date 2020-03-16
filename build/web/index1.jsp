@@ -60,11 +60,11 @@
                   <p class="card-text"><% if(news.getDescription().trim().length()>100) out.println(news.getDescription().trim().substring(0,99)+"..."); else out.println(news.getDescription().trim()); %> </p>
               </div>
               <div class="card-footer">
-                  <a href="showDetailNews.jsp" class="btn btn-primary">View More</a>
+                  <a href="admin/showDetailNews.jsp" class="btn btn-primary">View More</a>
               </div>
             </div>
           </div>
-<%}%>
+        <%}%>
           
         </div>
         <!-- /.row -->

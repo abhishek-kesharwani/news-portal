@@ -26,14 +26,14 @@
 </head>
 
 <body id="page-top">
-<%--<%
+<%
         if(session.getAttribute("admin")==null)
         {
             response.sendRedirect("../newslogin.jsp");
             return;
         }
         %>
---%>
+
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -56,7 +56,7 @@
 
           <!-- Page Heading -->
            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All Pending News</h1>
+            <h1 class="h3 mb-0 text-gray-800">All Pending Reporters</h1>
          </div>
          <table class="table">
               <tr>
@@ -76,7 +76,7 @@
                   <td><%=reporter.getContact()%> </td>
                   <td><%=reporter.getAddress()%></td>
                   <td><img src="../<%=reporter.getPhoto()%> " style="width: 58px;height: 58px;"></td>
-                  <td><a href="#" class="btn btn-success">View and Change Status</a></td>
+                  <td><a href="showDetailReporter.jsp?reporterid=<%=reporter.getId()%>" class="btn btn-success">View and Change Status</a></td>
               </tr>
              <%} %>
           </table>

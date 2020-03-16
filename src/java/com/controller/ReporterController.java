@@ -54,6 +54,40 @@ public class ReporterController extends HttpServlet {
                // out.println("Reporter Added !!");
             }
         } 
+         if(op!=null&& op.equalsIgnoreCase("update")){
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            String encodedPassword = "";
+            String imagePath = "";
+            HttpSession session = request.getSession();
+            Reporter reporter=(Reporter) session.getAttribute("reporter");
+            
+            if (isMultipart)  
+               imagePath = FileUploader.getUploadedPath(getServletContext(), "media/reporter", request);
+             System.out.println("imagepath"+ imagePath);
+            //JDBC Code 
+            if(imagePath=="")
+            {
+                encodedPassword = Base64.getEncoder().encodeToString(reporter.getPassword().getBytes("UTF-8"));
+                 reporter.setPassword(encodedPassword);
+                 ReporterDao rd = new ReporterDao();
+                 if (rd.update1(reporter)) {
+                
+                response.sendRedirect("reporter/addNews.jsp");
+               // out.println("Reporter Added !!");
+            }
+            }else
+            {
+            reporter.setPhoto(imagePath);
+            encodedPassword = Base64.getEncoder().encodeToString(reporter.getPassword().getBytes("UTF-8"));
+            reporter.setPassword(encodedPassword);
+            ReporterDao rd = new ReporterDao();
+            if (rd.update(reporter)) {
+                
+                response.sendRedirect("reporter/addNews.jsp");
+               // out.println("Reporter Added !!");
+            }
+            }
+        } 
         }
     
  

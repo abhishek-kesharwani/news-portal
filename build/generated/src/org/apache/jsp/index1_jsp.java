@@ -121,10 +121,11 @@ public final class index1_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" </p>\n");
       out.write("              </div>\n");
       out.write("              <div class=\"card-footer\">\n");
-      out.write("                  <a href=\"showDetailNews.jsp\" class=\"btn btn-primary\">View More</a>\n");
+      out.write("                  <a href=\"admin/showDetailNews.jsp\" class=\"btn btn-primary\">View More</a>\n");
       out.write("              </div>\n");
       out.write("            </div>\n");
       out.write("          </div>\n");
+      out.write("        ");
 }
       out.write("\n");
       out.write("          \n");

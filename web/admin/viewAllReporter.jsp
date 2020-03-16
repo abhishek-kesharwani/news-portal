@@ -64,6 +64,7 @@
                   <td>Contact </td>
                   <td>address</td>
                   <td>photo</td>
+                  <td>status</td>
                   <td>View and Change Status</td>
               </tr>
  <%
@@ -76,6 +77,7 @@
                   <td><%=reporter.getContact()%> </td>
                   <td><%=reporter.getAddress()%></td>
                   <td><img src="../<%=reporter.getPhoto()%>" style="width: 64px; height: 64px;"></td>
+                  <td><%=reporter.getStatus()%></td>
                   <td><a href="showDetailReporter.jsp?reporterid=<%=reporter.getId()%>" class="btn btn-success">View and Show Status</a></td>
               </tr>
              <%} %>

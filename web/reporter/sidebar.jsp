@@ -21,7 +21,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="updateNews.jsp">
                   <span data-feather="shopping-cart"></span>
                    Update News
                 </a>
@@ -29,12 +29,12 @@
               
               
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="updateProfile.jsp">
                   <span data-feather="layers"></span>
                   Update Profile
                 </a>
               </li> <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="updatePassword.jsp">
                   <span data-feather="layers"></span>
                   Change Password
                 </a>
@@ -50,21 +50,21 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="pendingNews.jsp">
                   <span data-feather="file-text"></span>
                   Pending News
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="rejectedNews.jsp">
                   <span data-feather="file-text"></span>
                   Rejected News
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="approvedNews.jsp">
                   <span data-feather="file-text"></span>
-                  Approved New
+                  Approved News
                 </a>
               </li>
               <li class="nav-item">

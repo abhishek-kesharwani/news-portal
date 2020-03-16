@@ -61,7 +61,7 @@
                                 <h4 class="card-title"><%=news.getTitle()%></h4>
                                 <p class="card-text"><%=news.getDescription()%></p>
                             </div>
-                            <img class="card-img-bottom" src="../<%=news.getImage()%>" alt="Card image" style="width:100%">
+                            <img class="card-img-bottom" src="../<%=news.getImage()%>" alt="Card image" style="width:350px;height: 350px;">
                             <h6>Current Status :</h6>
                             <form method="post">
                                 <p class="card-text"><input type="radio" value="Pending" name="status"  <%if(news.getStatus().equalsIgnoreCase("Pending"))out.println(" checked");%> > Pending</p>

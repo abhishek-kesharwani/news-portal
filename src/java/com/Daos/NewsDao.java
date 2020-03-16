@@ -98,6 +98,38 @@ public class NewsDao {
        
     return newss;
    }
+      public ArrayList<News>  getAllRejectedNews(){
+    
+       ArrayList<News> newss =new ArrayList<News>();
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from news where status='rejected' order by id desc";
+            PreparedStatement smt = con.prepareStatement(sql);
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+                News  news =new News();
+                news.setId(rs.getInt("id"));
+                news.setTitle(rs.getString("title"));
+                news.setDescription(rs.getString("description"));
+                news.setImage(rs.getString("image"));
+                news.setPosted_by(rs.getInt("posted_by"));
+                news.setPosted_on(rs.getString("posted_on"));
+                news.setStatus(rs.getString("status"));
+                news.setStatus_text(rs.getString("status_text"));
+                newss.add(news);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return newss;
+   }
        public ArrayList<News>  getAllPendingNews(){
     
        ArrayList<News> newss =new ArrayList<News>();
@@ -425,10 +457,11 @@ public class NewsDao {
        Connection con = cp.getConnection();
        if(con!=null){
         try{
-            String sql = "select * from news where reporter_id=?";
+            String sql = "select * from news where posted_by=?";
             PreparedStatement smt = con.prepareStatement(sql);
+             smt.setInt(1, reporterid);
             ResultSet rs= smt.executeQuery();
-            smt.setInt(1, reporterid);
+           
             while(rs.next()){
                 News  news =new News();
                 news.setId(rs.getInt("id"));
@@ -606,5 +639,41 @@ public class NewsDao {
        }
     return sts;
    }
+    public ArrayList<News>  getNewsfilter(int rid,int catid){
    
+       ArrayList<News> newss =new ArrayList<News>();
+       ConnectionPool cp = ConnectionPool.getInstance();
+       cp.initialize();
+       Connection con = cp.getConnection();
+       if(con!=null){
+        try{
+            String sql = "select * from news where posted_by=(?) and id in(select news_id from ncr where cat_id =?)";
+            PreparedStatement smt = con.prepareStatement(sql);
+             smt.setInt(1, rid);
+             smt.setInt(2,catid);
+           
+            ResultSet rs= smt.executeQuery();
+           
+            while(rs.next()){
+                News  news =new News();
+                news.setId(rs.getInt("id"));
+                news.setTitle(rs.getString("title"));
+                news.setDescription(rs.getString("description"));
+                news.setImage(rs.getString("image"));
+                news.setPosted_by(rs.getInt("posted_by"));
+                news.setPosted_on(rs.getString("posted_on"));
+                news.setStatus(rs.getString("status"));
+                news.setStatus_text(rs.getString("status_text"));
+                newss.add(news);
+            }
+            smt.close();
+            cp.putConnection(con);
+        }   catch(Exception e){
+            System.out.println("Error :"+e.getMessage());
+        }
+       }
+       
+    return newss;
+   }
+
 }

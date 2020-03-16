@@ -50,7 +50,27 @@
 
                         <!-- Begin Page Content -->
                         <div class="container-fluid">
+                              <%
+                            int reporterid = Integer.parseInt(request.getParameter("reporterid"));
+                            ReporterDao nd = new ReporterDao();
+                            Reporter reporter = nd.getById(reporterid);
+                        %>
 
+                        <div class="card col col-md-12 ">
+                            <div class="card-body ">
+                                <h4 class="card-title"><%=reporter.getName()%></h4>
+                                <p class="card-text"><%=reporter.getContact()%> <br/> <%=reporter.getAddress()%></p>
+                            </div>
+                            <img class="card-img-bottom" src="../<%=reporter.getPhoto()%>" alt="Card image" style="width:350px;height: 350px;"><br/>
+                            <h6>Current Status :</h6>
+                            <form method="post">
+                                <p class="card-text"><input type="radio" value="Pending" name="status"  <%if(reporter.getStatus().equalsIgnoreCase("Pending"))out.println(" checked");%> > Pending</p>
+                           <p class="card-text"><input type="radio" value="Approved" name="status"   <%if(reporter.getStatus().equalsIgnoreCase("Approved"))out.println(" checked");%>> Approved</p>
+                           <p class="card-text"><input type="radio" value="Rejected" name="status"  <%if(reporter.getStatus().equalsIgnoreCase("Rejected"))out.println(" checked");%>> Rejected</p>
+                           <input type="hidden" name="reporterid" value="<%=reporterid%>"/>
+                            <input type="submit" value="Update Status" name="submit" class="btn  btn-primary form-control">  
+                            </form>
+                            </div>
                             <!-- Page Heading -->
                        
                      </div>
@@ -102,16 +122,16 @@
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
 
-<%--
+
 <%
     
  if (request.getParameter("submit")!=null) {
-   if(nd.updateNewsStatus(Integer.parseInt(request.getParameter("newsid")), request.getParameter("status"), request.getParameter("status_text"))) 
-    response.sendRedirect("viewAllNews.jsp");
+   if(nd.updateReporterStatus(Integer.parseInt(request.getParameter("reporterid")), request.getParameter("status"))) 
+    response.sendRedirect("viewAllReporter.jsp");
    else 
        out.println("<script>alert('news is not updated !');</script>");
 }
- %>   --%>  
+ %>   
     
 </body>
 

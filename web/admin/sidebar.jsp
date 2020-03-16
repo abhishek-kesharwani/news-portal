@@ -67,9 +67,9 @@
         <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href="buttons.html">Category based News</a>
-            <a class="collapse-item" href="buttons.html">Reporter based News</a>
-            <a class="collapse-item" href="cards.html">Filter News </a>
+            <a class="collapse-item" href="categoryBasedNews.jsp">Category based News</a>
+            <a class="collapse-item" href="reporterBasedNews.jsp">Reporter based News</a>
+            <a class="collapse-item" href="filterNews.jsp">Filter News </a>
           </div>
         </div>
       </li> 
@@ -86,8 +86,8 @@
         <div id="collapseFive" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Actions...</h6>
-            <a class="collapse-item" href="buttons.html">View Subscribers</a>
-            <a class="collapse-item" href="buttons.html">View Enquiry</a>
+            <a class="collapse-item" href="subscriberList.jsp">View Subscribers</a>
+            <a class="collapse-item" href="query.jsp">View Enquiry</a>
         </div>
         </div>
       </li> 

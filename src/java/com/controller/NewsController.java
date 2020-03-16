@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.beans.News;
 import com.Daos.NewsDao;
+import com.Daos.ReporterDao;
 import com.utilities.FileUploader;
+import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
  
 public class NewsController extends HttpServlet {
@@ -19,7 +21,36 @@ public class NewsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+         String op=request.getParameter("op");
+          if(op!=null && op.equalsIgnoreCase("filter")){
+         int rid = Integer.parseInt(request.getParameter("rid"));
+          int cid = Integer.parseInt(request.getParameter("cid"));
+               String output = " <tr>\n" +
+                " <td>Title</td>\n" +
+                "   <td>Uploaded By </td>\n" +
+                "  <td>Uploaded On</td>\n" +
+                "  <td>Status</td>\n" +
+                "  <td>View and Change Status</td>\n" +
+                "   </tr>";
+                         
+              NewsDao nd = new NewsDao();
+              ArrayList<News> newsList = nd.getNewsfilter(rid,cid);
+              ReporterDao rd = new ReporterDao();
+              for(News news : newsList){
+               output+="<tr>\n" +
+"                  <td>"+news.getTitle()+"</td>\n" +
+"                  <td>"+rd.getById(news.getPosted_by()).getName()+"</td>\n" +
+"                  <td>"+news.getPosted_on()+"</td>\n" +
+"                  <td>"+news.getStatus()+"</td>\n" +
+"                  <td><a href=\"showDetailNews.jsp?newsid="+news.getId()+"\" class=\"btn btn-success\">View and Change Status</a></td>\n" +
+"              </tr>";
+              }
+              out.println(output); 
+                                 
+                               
+          }    
     }
 
     

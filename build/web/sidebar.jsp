@@ -1,9 +1,11 @@
+
+<%@page import="com.Daos.SubscriberDao"%>
 <%@page import="com.beans.Subscriber"%>
 <%@page import="com.Daos.NewsDao"%>
 <%@page import="com.beans.Category"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.Daos.CategoryDao"%>
-<%@page import="com.Daos.SubscriberDao"%>
+
 <div class="col-lg-3">
 
         <h4 class="my-4">News Categories</h4>

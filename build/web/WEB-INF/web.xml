@@ -8,6 +8,10 @@
         <servlet-name>NewsController</servlet-name>
         <servlet-class>com.controller.NewsController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>JsonServlet</servlet-name>
+        <servlet-class>com.rest.JsonServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ReporterController</servlet-name>
         <url-pattern>/ReporterController</url-pattern>
@@ -16,9 +20,13 @@
         <servlet-name>NewsController</servlet-name>
         <url-pattern>/NewsController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JsonServlet</servlet-name>
+        <url-pattern>/JsonServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            90
         </session-timeout>
     </session-config>
 </web-app>
